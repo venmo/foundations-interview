@@ -1,1 +1,1 @@
-Repo for testing k8s deployments
+Repository for Founbdations tech screen
