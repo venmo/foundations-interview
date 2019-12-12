@@ -1,0 +1,22 @@
+{{ if .Values.applyIngress }}
+apiVersion: contour.heptio.com/v1beta1
+kind: IngressRoute
+metadata:
+  name: test
+  namespace: venmo-app
+  annotations:
+    contour.heptio.com/ingress.class: contour-public
+  labels:
+    app: test
+spec:
+  virtualhost:
+    fqdn: {{ .Values.hostname }}
+  routes:
+    - match: /
+      services:
+        {{ range $release := .Values.releases }}
+        - name: {{ $release.version | replace "." "-" }}
+          port: 8080
+          weight: {{ $release.weight }}
+        {{ end }}
+{{ end }}

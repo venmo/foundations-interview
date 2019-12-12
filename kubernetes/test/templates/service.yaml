@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "test.appname" . }}
+  namespace: venmo-app
+  labels:
+    app: test
+    version: {{ .Values.version }}
+    track: {{ .Values.track }}
+spec:
+  selector:
+    app: test
+    version: {{ .Values.version }}
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
