@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "test.appname" . }}
-  namespace: venmo-app
+  namespace: {{ .Values.namespace }}
   labels:
     app: test
     version: {{ .Values.version }}
