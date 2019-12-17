@@ -2,8 +2,8 @@
 apiVersion: contour.heptio.com/v1beta1
 kind: IngressRoute
 metadata:
-  name: test
-  namespace: venmo-app
+  name: {{ .Values.appname }}
+  namespace: {{ .Values.namespace }}
   annotations:
     contour.heptio.com/ingress.class: contour-public
   labels:
